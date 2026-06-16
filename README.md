@@ -125,6 +125,14 @@ retailops/
 
 4. Open your web browser and navigate to the frontend URL (usually `http://localhost:5173`)
 
+## Secret Management using Vault
+
+We implement HashiCorp Vault inside Kubernetes to centralize and secure application secrets:
+
+* **Vault Setup**: Manifests and deployments are configured in the `vault/` directory.
+* **Initialization**: Run `./vault/init-vault.sh` to register the Key-Value (KV v2) secrets engine and store the database connection URIs and JWT secrets.
+* **Retrieval**: Workloads retrieve secrets dynamically at runtime through Vault integrations. Refer to [vault/README.md](file:///Users/arohichakote/Desktop/retailops/vault/README.md) for CLI commands, configurations, and Web UI portal details.
+
 ## API Endpoints
 
 ### Products

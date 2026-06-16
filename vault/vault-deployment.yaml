@@ -1,63 +1,6 @@
-# Kubernetes Manifest for HashiCorp Vault Deployment and Service
-# Suitable for academic/demo RetailOps project evaluation.
-#
-# This file provisions:
-# 1. Namespace: "vault" to isolate security tools.
-# 2. PersistentVolumeClaim: To store secrets persistently on disk.
-# 3. ConfigMap: Mounting the vault-config.hcl file.
-# 4. Deployment: Single-replica Vault instance running in server mode.
-# 5. Service: Exposing the Vault API/UI (Port 8200) to the cluster.
+# HashiCorp Vault Server Deployment (Dev Mode)
+# Namespace: vault
 
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: vault
-  labels:
-    app: vault
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: vault-file-pvc
-  namespace: vault
-  labels:
-    app: vault
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: vault-config-map
-  namespace: vault
-  labels:
-    app: vault
-data:
-  vault-config.hcl: |
-    # Storage configuration using local file storage backend for demo/evaluation
-    storage "file" {
-      path = "/vault/data"
-    }
-
-    # TCP listener configuration on port 8200
-    listener "tcp" {
-      address     = "0.0.0.0:8200"
-      tls_disable = "true" # Disabled for demo purposes; TLS must be enabled in production
-    }
-
-    # API address advertise configuration
-    api_addr = "http://127.0.0.1:8200"
-    
-    # Enable Web UI
-    ui = true
-    
-    # Disable mlock as standard pods don't have IPC_LOCK permission defaults
-    disable_mlock = true
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -78,7 +21,7 @@ spec:
       containers:
       - name: vault
         image: hashicorp/vault:1.15.2
-        command: ["vault", "server", "-config=/vault/config/vault-config.hcl"]
+        command: ["vault", "server", "-dev", "-dev-listen-address=0.0.0.0:8200", "-dev-root-token-id=root-token"]
         env:
         - name: VAULT_ADDR
           value: "http://127.0.0.1:8200"
@@ -90,49 +33,21 @@ spec:
         securityContext:
           capabilities:
             add: ["IPC_LOCK"]
-        # Probes leverage /v1/sys/health with custom codes to prevent crash loops when sealed/uninitialized
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
         readinessProbe:
           httpGet:
-            path: /v1/sys/health?standbycode=200&sealedcode=200&uninitcode=200
+            path: /v1/sys/health
             port: 8200
           initialDelaySeconds: 5
-          periodSeconds: 10
+          periodSeconds: 5
         livenessProbe:
           httpGet:
-            path: /v1/sys/health?standbycode=200&sealedcode=200&uninitcode=200
+            path: /v1/sys/health
             port: 8200
-          initialDelaySeconds: 15
-          periodSeconds: 20
-        volumeMounts:
-        - name: config
-          mountPath: /vault/config
-        - name: data
-          mountPath: /vault/data
-      volumes:
-      - name: config
-        configMap:
-          name: vault-config-map
-      - name: data
-        persistentVolumeClaim:
-          claimName: vault-file-pvc
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: vault-service
-  namespace: vault
-  labels:
-    app: vault
-spec:
-  type: ClusterIP
-  ports:
-  - name: api
-    port: 8200
-    targetPort: 8200
-    protocol: TCP
-  - name: cluster
-    port: 8201
-    targetPort: 8201
-    protocol: TCP
-  selector:
-    app: vault
+          initialDelaySeconds: 10
+          periodSeconds: 10
