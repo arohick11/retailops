@@ -16,3 +16,4 @@ build/
 *.bak
 *.tmp
 .DS_Store
+kubeconfig-jenkins
