@@ -106,11 +106,11 @@ pipeline {
                     """
 
                     // Apply manifests using kubectl
-                    sh "kubectl --kubeconfig=\$KUBECONFIG apply -f kubernetes/mongo-statefulset.yaml"
-                    sh "kubectl --kubeconfig=\$KUBECONFIG apply -f kubernetes/backend-deploy.yaml"
-                    sh "kubectl --kubeconfig=\$KUBECONFIG apply -f kubernetes/frontend-deploy.yaml"
-                    sh "kubectl --kubeconfig=\$KUBECONFIG apply -f kubernetes/ingress.yaml"
-                    sh "kubectl --kubeconfig=\$KUBECONFIG apply -f kubernetes/hpa.yaml"
+                    sh "kubectl --kubeconfig=\$KUBECONFIG --insecure-skip-tls-verify=true apply -f kubernetes/mongo-statefulset.yaml"
+                    sh "kubectl --kubeconfig=\$KUBECONFIG --insecure-skip-tls-verify=true apply -f kubernetes/backend-deploy.yaml"
+                    sh "kubectl --kubeconfig=\$KUBECONFIG --insecure-skip-tls-verify=true apply -f kubernetes/frontend-deploy.yaml"
+                    sh "kubectl --kubeconfig=\$KUBECONFIG --insecure-skip-tls-verify=true apply -f kubernetes/ingress.yaml"
+                    sh "kubectl --kubeconfig=\$KUBECONFIG --insecure-skip-tls-verify=true apply -f kubernetes/hpa.yaml"
                 }
             }
         }
