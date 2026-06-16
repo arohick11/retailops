@@ -17,3 +17,8 @@ build/
 *.tmp
 .DS_Store
 kubeconfig-jenkins
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+
