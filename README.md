@@ -12,9 +12,9 @@ This project is a full-stack Omnichannel Retail Operations Platform web applicat
 
 Refer to the following design documents for comprehensive system architecture, deployment layouts, and recovery plans:
 
-* **[Architecture Diagram](file:///Users/arohichakote/Desktop/retailops/docs/architecture-diagram.md)**: Visualizes system components, data flows, and security relationships.
-* **[Deployment Diagram](file:///Users/arohichakote/Desktop/retailops/docs/deployment-diagram.md)**: Shows the complete CI/CD automation pipeline flow from developer commit to Kubernetes scheduling.
-* **[Disaster Recovery Plan](file:///Users/arohichakote/Desktop/retailops/docs/disaster-recovery-plan.md)**: Details RTO/RPO metrics, failover configurations, backup regimens, and step-by-step restoration procedures.
+* **[Architecture Diagram](file:///Users/arohichakote/Desktop/retailops/docs/architecture_diagram.md)**: Visualizes system components, data flows, and security relationships.
+* **[Deployment Diagram](file:///Users/arohichakote/Desktop/retailops/docs/deployment_diagram.md)**: Shows the complete CI/CD automation pipeline flow from developer commit to Kubernetes scheduling.
+* **[Disaster Recovery Plan](file:///Users/arohichakote/Desktop/retailops/docs/disaster_recovery_plan.md)**: Details RTO/RPO metrics, failover configurations, backup regimens, and step-by-step restoration procedures.
 
 ## Project Structure
 
