@@ -1,0 +1,270 @@
+.order-history-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 40px;
+}
+
+.order-history-header {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.back-btn {
+  background: white;
+  border: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #f5f5f5;
+  border-color: #1a1a1a;
+}
+
+.order-history-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.loyalty-points-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.no-orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.no-orders svg {
+  margin-bottom: 24px;
+  color: #666;
+}
+
+.no-orders h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #1a1a1a;
+}
+
+.no-orders p {
+  font-size: 16px;
+  margin: 0;
+  color: #666;
+}
+
+.orders-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.order-card {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-id {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.order-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: monospace;
+}
+
+.order-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-status.pending {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.order-status.processing {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.order-status.completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.status-icon.pending {
+  color: #e65100;
+}
+
+.status-icon.processing {
+  color: #1976d2;
+}
+
+.status-icon.completed {
+  color: #2e7d32;
+}
+
+.order-date {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.order-products {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.order-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.product-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #1a1a1a;
+}
+
+.product-info p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.order-footer {
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.total-amount {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 48px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .order-history-container {
+    padding: 20px;
+  }
+
+  .order-history-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .order-history-header h1 {
+    font-size: 24px;
+  }
+
+  .order-card {
+    padding: 24px;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .order-product {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
