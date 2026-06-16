@@ -36,7 +36,7 @@ spec:
       containers:
         - name: frontend
           # This image pattern matches the sed replacement regex inside the Jenkinsfile
-          image: docker.io/arohichakote/retailops-frontend:latest
+          image: docker.io/arohiick11/retailops-frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

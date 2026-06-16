@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Registry parameters - change these for your actual registry
         REGISTRY_URL   = 'docker.io'
-        DOCKER_HUB_ORG = 'arohichakote'
+        DOCKER_HUB_ORG = 'arohiick11'
         BACKEND_IMAGE  = 'retailops-backend'
         FRONTEND_IMAGE = 'retailops-frontend'
         
